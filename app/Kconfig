@@ -1,0 +1,8 @@
+config BLINK_SLEEP_TIME_MS
+    int "LED blink interval in milliseconds"
+    default 1000
+    range 100 5000
+    help
+        This option allows you to set the interval at which the LED will blink. The value is specified in milliseconds.
+
+source "Kconfig.zephyr"
