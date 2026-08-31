@@ -1,0 +1,6 @@
+/* Nucleo H7S3L8 board LED overlay */
+/ {
+	aliases {
+		app-led = &green_led;
+	};
+};

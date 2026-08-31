@@ -1,8 +1,0 @@
-/* Nucleo H7S3L8 board LED overlay */
-/ {
-	aliases {
-		ok-led = &green_led;
-		warning-led = &yellow_led;
-		error-led = &red_led;
-	};
-};
