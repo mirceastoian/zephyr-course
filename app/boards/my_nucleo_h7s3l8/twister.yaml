@@ -1,0 +1,37 @@
+name: ST My Custom Nucleo H7S3L8
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+supported:
+  - gpio
+  - uart
+  - watchdog
+  - dma
+  - entropy
+  - adc
+  - octospi
+  - can
+  - canfd
+  - netif:eth
+  - rtc
+  - usbd
+vendor: st
+variants:
+  my_nucleo_h7s3l8/stm32h7s3xx:
+    twister: true
+    ram: 456
+    flash: 64
+  my_nucleo_h7s3l8/stm32h7s3xx/ext_flash_app:
+    sysbuild: true
+    ram: 456
+    flash: 8191  # size in kB of 1 app slot minus MCUboot header size (1KB)
+    testing:
+      ignore_tags:
+        - arch
+        - arm
+        - clib
+        - cpp
+        - kernel
+        - posix
+        - cmsis-dsp
