@@ -1,0 +1,6 @@
+board:
+  name: my_nucleo_h7s3l8_from_scratch
+  full_name: My board from scratch (using Nucleo H7S3L8)
+  vendor: mircea
+  socs:
+    - name: stm32h7s3xx
