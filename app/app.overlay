@@ -1,6 +1,8 @@
 /* Nucleo H7S3L8 board LED overlay */
 / {
-	aliases {
-		app-led = &green_led;
+	my_led: my_led_driver {
+		compatible = "mircea,my-led-driver";
+		status = "okay";
+		gpios = <&gpiob 7 GPIO_ACTIVE_HIGH>; /* Red LED on Nucleo H7S3L8 board */
 	};
 };

@@ -1,0 +1,7 @@
+menuconfig MY_LED_DRIVER
+    bool "My LED Driver"
+    default y
+    depends on DT_HAS_MIRCEA_MY_LED_DRIVER_ENABLED
+    select GPIO
+    help
+      This is a simple LED driver for demonstration purposes.
