@@ -9,6 +9,7 @@ LOG_MODULE_REGISTER(my_led_driver, LOG_LEVEL_INF);
 
 struct my_led_driver_config {
     struct gpio_dt_spec gpio;
+    uint32_t id;
 };
 
 struct my_led_driver_data {
@@ -26,7 +27,7 @@ static int my_led_driver_init(const struct device *dev)
 	return 0;
 }
 
-static int control_led(const struct device *dev, const bool state)
+static inline int control_led(const struct device *dev, const bool state)
 {
     const struct my_led_driver_config *cfg = (const struct my_led_driver_config *)dev->config;
     const struct gpio_dt_spec *led = &cfg->gpio;
@@ -57,6 +58,13 @@ static int my_led_driver_channel_get(const struct device *dev,
     return control_led(dev, 0);
 }
 
+int my_led_driver_set_state(const struct device *dev, bool state)
+{
+    // control_led function also changes the led state value in the
+    // dynamic driver data structure so we will not do it here
+    return control_led(dev, state);
+}
+
 static const struct sensor_driver_api my_led_driver_api = {
 	.sample_fetch = my_led_driver_sample_fetch,
 	.channel_get = my_led_driver_channel_get
@@ -65,7 +73,8 @@ static const struct sensor_driver_api my_led_driver_api = {
 #define DEVICE_INSTANCE(inst) \
 \
 const static struct my_led_driver_config my_led_driver_##inst##_cfg = { \
-		.gpio = GPIO_DT_SPEC_INST_GET(inst, gpios) \
+		.gpio = GPIO_DT_SPEC_INST_GET(inst, gpios), \
+        .id = inst \
 }; \
 \
 static struct my_led_driver_data my_led_driver_##inst##_drvdata = { \
