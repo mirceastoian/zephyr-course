@@ -7,3 +7,7 @@ find_package(Zephyr REQUIRED)
 project(my_zephyr_app)
 
 target_sources(app PRIVATE src/main.cpp)
+
+if (CONFIG_SHELL)
+    zephyr_library_sources(src/app_shell.c)
+endif()

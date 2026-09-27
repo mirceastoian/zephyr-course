@@ -5,4 +5,10 @@
 		status = "okay";
 		gpios = <&gpiob 7 GPIO_ACTIVE_HIGH>; /* Red LED on Nucleo H7S3L8 board */
 	};
+
+	my_led2: my_led_driver2 {
+		compatible = "mircea,my-led-driver";
+		status = "okay";
+		gpios = <&gpiod 10 GPIO_ACTIVE_HIGH>; /* Green LED on Nucleo H7S3L8 board */
+	};
 };
