@@ -7,3 +7,6 @@ deps
 
 # VS Code
 .vscode
+
+# Twister output
+**/twister-out/native_sim_native/*
