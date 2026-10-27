@@ -54,7 +54,11 @@ static int my_led_driver_channel_get(const struct device *dev,
                                      struct sensor_value *val)
 {
     (void)chan;
-    (void)val;
+
+    struct my_led_driver_data *data = dev->data;
+    val->val1 = data->led_state ? 1 : 0;
+    val->val2 = 0;
+
     return control_led(dev, 0);
 }
 

@@ -8,15 +8,22 @@ static int cmd_sensor_fetch(const struct shell *sh, size_t argc, char **argv) {
     ARG_UNUSED(argc);
     ARG_UNUSED(argv);
     sensor_sample_fetch(led_dev);
-    shell_print(sh, "LED was turned ON");
+    shell_print(sh, "LED state: 1");
     return 0;
 }
 
 static int cmd_sensor_read(const struct shell *sh, size_t argc, char **argv) {
     ARG_UNUSED(argc);
     ARG_UNUSED(argv);
-    sensor_channel_get(led_dev, SENSOR_CHAN_ALL, NULL);
-    shell_print(sh, "LED was turned OFF");
+
+    struct sensor_value value;
+    int ret = sensor_channel_get(led_dev, SENSOR_CHAN_ALL, &value);
+    if (ret != 0) {
+        shell_error(sh, "sensor_channel_get failed: %d", ret);
+        return ret;
+    }
+    shell_print(sh, "LED state: %d", value.val1);
+    
     return 0;
 }
 
